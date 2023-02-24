@@ -6,13 +6,14 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:49:47 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/24 14:54:25 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:27:10 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #   ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
+class Form;
 
 class Bureaucrat
 {
@@ -31,6 +32,7 @@ class Bureaucrat
         void            up_grade();
         void            down_grade();
         void            test_grade(int grade);
+        void            signForm(Form const & f) const;
         class           GradeTooHighException : public std::exception
         {
             public:

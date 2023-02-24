@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:47:30 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/24 14:20:07 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:01:08 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <exception>
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 #define GRN "\033[0;32m"
 #define WHT "\033[0;0m"
@@ -27,5 +28,8 @@
 
 #define H 1
 #define L 150
+
+#define FH 1
+#define FL 75
 
 #   endif

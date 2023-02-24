@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:00:51 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/24 17:33:27 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:31:32 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,20 @@ void    Bureaucrat::down_grade()
 {
     this->test_grade(this->grade + 1);
     this->grade ++;
+}
+
+void    Bureaucrat::signForm(Form const & f) const
+{
+    try
+    {
+        const_cast<Form &>(f).beSigned(*this);
+        std::cout << this->name << " signed " << f.getName() << std::endl;
+    }
+    catch(std::exception &e)
+    {
+        std::cout << this->name << " couldn’t sign " << f.getName() 
+        << " because " << e.what()<< std::endl;
+    }
 }
 
 /********************************************************************/
