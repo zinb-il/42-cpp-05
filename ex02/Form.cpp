@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:00:51 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/24 20:21:27 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:06:47 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,10 @@ const char* Form::GradeTooLowException::what(void) const throw()
 {
      return ("The grade is too lower");
 }
+const char* Form::FormNotSigned::what(void) const throw()
+{
+     return ("The form is not signed");
+}
 
 /********************************************************************/
 
@@ -92,6 +96,11 @@ void Form::test_grade(int grade, int limit)
 std::string Form::getName(void) const
 {
     return (this->name);
+}
+
+void Form::setName(std::string const n)
+{
+    const_cast<std::string &>(name) = n;
 }
 
 int Form::getSGrade(void) const

@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:49:47 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/24 20:05:18 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:49:46 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class Bureaucrat
         void            down_grade();
         void            test_grade(int grade);
         void            signForm(Form const & f) const;
+        void            executeForm(Form const & form) const;
         class           GradeTooHighException : public std::exception
         {
             public:

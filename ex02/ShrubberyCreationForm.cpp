@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:00:51 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/24 20:30:57 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:14:17 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm():Form()
 {
     std::cout << "ShrubberyCreationForm Default constructor called" << std::endl;
+    setName("ShrubberyCreationForm");
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target):Form(target, S_SL, E_SL)
@@ -29,6 +30,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target):Form(target, S_
 ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm const &ob):Form(ob)
 {
     std::cout << "ShrubberyCreationForm Copy constroctur called" << std::endl;
+    setName("ShrubberyCreationForm");
     *this = ob;
 }
 
@@ -47,60 +49,20 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 ShrubberyCreationForm & ShrubberyCreationForm::operator=(ShrubberyCreationForm const &ob)
 {
     std::cout << "ShrubberyCreationForm Copy assignment operator called" << std::endl;
-    return (*this);
+    return dynamic_cast<ShrubberyCreationForm &>(Form::operator=(ob));
 }
 
 /********************************************************************/
+
 
 
 /********************************************************************/
 /*                             Exceptions                           */
 /********************************************************************/
 
-const char* ShrubberyCreationForm::GradeTooHighException::what(void) const throw()
+const char* ShrubberyCreationForm::FileError::what(void) const throw()
 {
-     return ("The grade is too heigher");
-}
-
-const char* ShrubberyCreationForm::GradeTooLowException::what(void) const throw()
-{
-     return ("The grade is too lower");
-}
-
-/********************************************************************/
-
-
-
-/********************************************************************/
-/*                  Getters and Setters functions                   */
-/********************************************************************/
-
-void ShrubberyCreationForm::test_grade(int grade)
-{
-    if(grade < H)
-        throw(ShrubberyCreationForm::GradeTooHighException());
-    if(grade > S_SL)
-        throw(ShrubberyCreationForm::GradeTooLowException());
-}
-
-std::string ShrubberyCreationForm::getName(void) const
-{
-    return (this->name);
-}
-
-int ShrubberyCreationForm::getSGrade(void) const
-{
-    return (this->s_grade);
-}
-
-int ShrubberyCreationForm::getEGrade(void) const
-{
-    return (this->e_grade);
-}
-
-bool    ShrubberyCreationForm::getSigned(void) const
-{
-    return (this->signe);
+     return ("Une erreur s'est produite lors de l'ouverture du fichier ShrubberyCreationForm");
 }
 
 /********************************************************************/
@@ -113,21 +75,31 @@ bool    ShrubberyCreationForm::getSigned(void) const
 /********************************************************************/
 
 
-void    ShrubberyCreationForm::beSigned(Bureaucrat const & b)
+void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-    if (b.getGrade() > this->s_grade)
-       throw(ShrubberyCreationForm::GradeTooLowException());
-    this->signe = true;
+    std::ofstream *outputfile;
+    std::string shrubbery = "      @@      \n"
+                            "   @@@@@@@@   \n"
+                            " @@@@@@@@@@@@ \n"
+                            "@@@@@@@@@@@@@@\n"
+                            "@@@@|    |@@@@\n"
+                            "  @@|    |@@  \n"
+                            "    |    |    \n"
+                            "    |    |    \n"
+                            "____|____|____\n";
+    
+    if (executor.getGrade() > this->getEGrade())
+       throw(Form::GradeTooLowException());
+    if (!this->getSigned())
+        throw(Form::FormNotSigned());
+    outputfile = new std::ofstream (this->getName() + "_shrubbery", std::ofstream::out | std::ofstream::trunc);
+    if (!outputfile->good())
+        throw(ShrubberyCreationForm::FileError());
+    *(outputfile) << shrubbery;
+    *(outputfile) << shrubbery;
+    *(outputfile) << shrubbery;
+    outputfile->close();
 }
 
 /********************************************************************/
 
-
-std::ostream & operator<<(std::ostream & o, ShrubberyCreationForm const &ref)
-{
-    std::cout <<  "ShrubberyCreationForm \"" << ref.getName() << "\" is signed : "
-    << (!ref.getSigned() ? "'No'" : "\"Yes\"") << 
-    ", it's signe grade is: " << ref.getSGrade() << 
-    ", it's execute grade is: " << ref.getEGrade() << std::endl; 
-    return o;
-}

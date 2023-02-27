@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 17:47:30 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/24 20:17:47 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:33:16 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <fstream>
 #include <stdexcept>
+#include <cstdlib>
 #include <exception>
 
 #include "Bureaucrat.hpp"
