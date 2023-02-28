@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:10:55 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/27 18:38:02 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:27:22 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class RobotomyRequestForm : public Form
 
 		RobotomyRequestForm &    operator=(RobotomyRequestForm const &ob);
 		virtual void	execute(Bureaucrat const & executor) const;
+		void		    executeForm(Bureaucrat const & executor);
 };
 
 #   endif

@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:00:51 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/27 18:38:13 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:09:15 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void    RobotomyRequestForm::execute(Bureaucrat const & executor) const
        throw(Form::GradeTooLowException());
     if (!this->getSigned())
         throw(Form::FormNotSigned());
+    if (this->getExecuted())
+        throw(Form::FormIsExecuted());
     srand((unsigned) time(NULL));
     r = rand() % 10 + 1;
     if (r > 5)

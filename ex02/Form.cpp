@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:00:51 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/27 17:06:47 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:27:42 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 /*                     Constructors  and Destructor                 */
 /********************************************************************/
 
-Form::Form():name("Form"), signe(false) , s_grade(L), e_grade(L)
+Form::Form():name("Form"), signe(false) , executed(false), s_grade(L), e_grade(L)
 {
     std::cout << "Form Default constructor called" << std::endl;
 }
 
-Form::Form(std::string n, int s_g, int e_g):name(n), signe(false), s_grade(s_g), e_grade(e_g)
+Form::Form(std::string n, int s_g, int e_g):name(n), signe(false), executed(false), s_grade(s_g), e_grade(e_g)
 {
     this->test_grade(s_g, L);
     this->test_grade(e_g, L);
@@ -53,6 +53,7 @@ Form & Form::operator=(Form const &ob)
     const_cast<int &>(s_grade) = ob.getSGrade();
     const_cast<int &>(e_grade) = ob.getEGrade();
     this->signe = ob.getSigned();
+    this->executed = ob.getExecuted();
     return (*this);
 }
 
@@ -76,6 +77,10 @@ const char* Form::FormNotSigned::what(void) const throw()
 {
      return ("The form is not signed");
 }
+const char* Form::FormIsExecuted::what(void) const throw()
+{
+     return ("The form is already executed");
+}
 
 /********************************************************************/
 
@@ -93,15 +98,16 @@ void Form::test_grade(int grade, int limit)
         throw(Form::GradeTooLowException());
 }
 
+void Form::setName(std::string const n)
+{
+    const_cast<std::string &>(name) = n;
+}
+
 std::string Form::getName(void) const
 {
     return (this->name);
 }
 
-void Form::setName(std::string const n)
-{
-    const_cast<std::string &>(name) = n;
-}
 
 int Form::getSGrade(void) const
 {
@@ -116,6 +122,10 @@ int Form::getEGrade(void) const
 bool    Form::getSigned(void) const
 {
     return (this->signe);
+}
+bool    Form::getExecuted(void) const
+{
+    return (this->executed);
 }
 
 /********************************************************************/
@@ -135,6 +145,18 @@ void    Form::beSigned(Bureaucrat const & b)
     this->signe = true;
 }
 
+void Form::executeForm(Bureaucrat const & executor)
+{
+    if (executor.getGrade() > this->e_grade)
+       throw(Form::GradeTooLowException());
+    if (!this->signe)
+        throw(Form::FormNotSigned());
+    if (this->executed)
+        throw(Form::FormIsExecuted());
+    this->executed = true;
+    
+}
+
 /********************************************************************/
 
 
@@ -142,6 +164,7 @@ std::ostream & operator<<(std::ostream & o, Form const &ref)
 {
     std::cout <<  "Form \"" << ref.getName() << "\" is signed : "
     << (!ref.getSigned() ? "'No'" : "\"Yes\"") << 
+    "\" is executed : " << (!ref.getExecuted() ? "'No'" : "\"Yes\"") << 
     ", it's signe grade is: " << ref.getSGrade() << 
     ", it's execute grade is: " << ref.getEGrade() << std::endl; 
     return o;

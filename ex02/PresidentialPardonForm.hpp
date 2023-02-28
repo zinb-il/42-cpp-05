@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 20:10:55 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/27 18:37:57 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:27:12 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ class PresidentialPardonForm : public Form
 
 		PresidentialPardonForm &    operator=(PresidentialPardonForm const &ob);
 		virtual void	execute(Bureaucrat const & executor) const;
+		void		    executeForm(Bureaucrat const & executor);
 };
 
 #   endif

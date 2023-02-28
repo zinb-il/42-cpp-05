@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:25:33 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/27 18:48:01 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:11:51 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int main(void)
        //f1->beSigned(b);
        b.signForm(*f1);
        std::cout << *f1;
+       f1->execute(b);
        f1->execute(b);
         
         delete(f1);

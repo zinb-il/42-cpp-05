@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:00:51 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/27 18:14:17 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:26:56 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,7 @@ void    ShrubberyCreationForm::execute(Bureaucrat const & executor) const
                             "    |    |    \n"
                             "    |    |    \n"
                             "____|____|____\n";
-    
-    if (executor.getGrade() > this->getEGrade())
-       throw(Form::GradeTooLowException());
-    if (!this->getSigned())
-        throw(Form::FormNotSigned());
+    this->executeForm(executor);
     outputfile = new std::ofstream (this->getName() + "_shrubbery", std::ofstream::out | std::ofstream::trunc);
     if (!outputfile->good())
         throw(ShrubberyCreationForm::FileError());
