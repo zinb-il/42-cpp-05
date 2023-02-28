@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 12:25:33 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/28 12:41:57 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:18:28 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@ int main(void)
 {
     try
     {
-        Form f("F1", 1, 1);
-        Form f1("F1", FL, FL);
-        Form f2("F2", 10, 15);
+        Form f1("F1", 1, 1);
+        Form f2("F2", FL, FL);
+        Form f3("F3", 10, 15);
         Bureaucrat b("B1",74);
         Bureaucrat b1("B2",75);
 
         std::cout << f1;
-        f1.beSigned(b);
+        f2.beSigned(b);
         std::cout << f1;
-        f1 = f2;
+        f2 = f3;
         std::cout << f1;
-        b1.signForm(f);
+        b1.signForm(f1);
     }
     catch(const std::exception& e)
     {
