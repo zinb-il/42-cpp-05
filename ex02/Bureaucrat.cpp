@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 18:00:51 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/28 12:29:41 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:32:27 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,9 @@ void Bureaucrat::executeForm(Form const & form) const
         const_cast<Form &>(form).executeForm(*this);
         std::cout << this->name << " executed " << form.getName() << std::endl;
     }
-    catch(std:exception &e)
+    catch(std::exception &e)
     {
-         std::cout << this->name << " couldn’t execute " << f.getName() 
+        std::cout << this->name << " couldn’t execute " << form.getName() 
         << " because " << e.what()<< std::endl;
     }
 }

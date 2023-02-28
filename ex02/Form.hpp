@@ -6,7 +6,7 @@
 /*   By: ziloughm <ziloughm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 15:00:56 by ziloughm          #+#    #+#             */
-/*   Updated: 2023/02/28 12:18:39 by ziloughm         ###   ########.fr       */
+/*   Updated: 2023/02/28 12:37:53 by ziloughm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ class Form
 	private:
 		std::string const   name;
 		bool                signe;
-		bool                executed;
 		int const			s_grade;
 		int const			e_grade;
 	public:
@@ -33,14 +32,13 @@ class Form
 		int             getSGrade(void) const;
 		int             getEGrade(void) const;
 		bool            getSigned(void) const;
-		bool            getExecuted(void) const;
 		void		    setName(std::string const n);
 
 		
 		virtual void	test_grade(int grade, int limit);
 		void			beSigned(Bureaucrat const & b);
 		virtual void	execute(Bureaucrat const & executor) const = 0;
-		void		    executeForm(Bureaucrat const & executor);
+		void		    executeForm(Bureaucrat const & executor) const;
 
 		
 		class           GradeTooHighException : public std::exception
@@ -54,11 +52,6 @@ class Form
 				const char* what(void) const throw();
 		};
 		class           FormNotSigned : public std::exception
-		{
-			public:
-				const char* what(void) const throw();
-		};
-		class           FormIsExecuted : public std::exception
 		{
 			public:
 				const char* what(void) const throw();
